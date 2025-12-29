@@ -1,2 +1,4 @@
 # Calculator
-I made Calculator using HTML , CSS and JavaScript
+MY first project :
+     Calculator using HTML , CSS and JavaScript
+
