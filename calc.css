@@ -1,10 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
+:root {
+  /* Light Mode Colors – Soft Premium */
+  --bg-gradient-1: #f4f6fb;        /* Soft bluish white */
+  --bg-gradient-2: #e9edf5;        /* Subtle depth */
+
+  --border-color: #d1d9e6;         /* Clean border */
+  --shadow-color: rgba(0, 0, 0, 0.12);
+  --input-shadow: rgba(0, 0, 0, 0.06);
+
+  --text-color: #1e293b;           /* Soft black (NOT pure black) */
+
+  --button-active-bg: rgba(0, 0, 0, 0.08);
+
+  --equalbtn-bg: #ff7a18;          /* Warm coral-orange */
+  --operator-color: #16a34a;       /* Calm finance green */
+
+  --toggle-bg: #e9edf5;
+  --toggle-hover: #dbe1ec;
+}
+
+
+/* Dark Mode Colors */
+body.dark-mode {
+  --bg-gradient-1: #0b0f1a;
+  --bg-gradient-2: #111827;
+
+  --border-color: #1f2933;
+  --shadow-color: rgba(0, 0, 0, 0.8);
+  --input-shadow: rgba(0, 0, 0, 0.4);
+
+  --text-color: #e5e7eb;
+
+  --button-active-bg: rgba(255, 255, 255, 0.1);
+
+  --equalbtn-bg: #3b82f6;
+  --operator-color: #22c55e;
+
+  --toggle-bg: #111827;
+  --toggle-hover: #1f2933;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif; /* Applied font family globally */
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -13,64 +54,113 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(45deg, #2e2424, #444654);
+  background: linear-gradient(45deg, var(--bg-gradient-1), var(--bg-gradient-2));
+  transition: background 0.3s ease;
+}
+
+/* ============================================
+   DARK MODE TOGGLE BUTTON
+   ============================================ */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  background: var(--toggle-bg);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 10px var(--shadow-color);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background: var(--toggle-hover);
+  transform: scale(1.08);
+  box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.dark-mode-toggle:active {
+  transform: scale(0.95);
+}
+
+.dark-mode-toggle i {
+  transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle:hover i {
+  transform: rotate(15deg);
 }
 
 .container {
-  border: 1px solid #717377;
+  border: 1px solid var(--border-color);
   padding: 50px;
   border-radius: 20px;
   background: transparent;
-  box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+  box-shadow: 0px 3px 15px var(--shadow-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input {
-    width: 320px;
-    padding: 24px;
-    border: none;
-    margin: 10px;
-    background: transparent;
-    color: white;
-    box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
-    border-radius: 20px;
-    font-size: 40px;
-    text-align: right;
-    margin-bottom: 20px;
-    cursor: default; /* Changed to default since it is read-only */
+  width: 320px;
+  padding: 24px;
+  border: none;
+  margin: 10px;
+  background: transparent;
+  color: var(--text-color);
+  box-shadow: 0px 3px 15px var(--input-shadow);
+  border-radius: 20px;
+  font-size: 40px;
+  text-align: right;
+  margin-bottom: 20px;
+  cursor: default;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* FIXED: Removed space between input and ::placeholder */
 input::placeholder {
-    color: #ffffff;
+  color: var(--text-color);
+  opacity: 0.7;
 }
 
 button {
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    box-shadow: -5px -5px 15px rgba(255, 255, 254, 0.1); /* Adjusted shadow for transparency */
-    color: #ffffff;
-    background: transparent;
-    font-size: 18px;
-    margin: 10px;
-    cursor: pointer;
-    
-    /* NEW: Smooth transition for click effect */
-    transition: transform 0.1s ease;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: var(--text-color);
+  background: transparent;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease, color 0.3s ease;
 }
 
-/* NEW: Button Press Effect */
 button:active {
-    transform: scale(0.95);
-    background: rgba(255, 255, 255, 0.05);
+  transform: scale(0.95);
+  background: var(--button-active-bg);
+}
+
+button:hover {
+  background: var(--button-active-bg);
 }
 
 .equalbtn {
-    background-color: coral;
-    box-shadow: none; /* Often looks cleaner without shadow on flat color */
+  background-color: var(--equalbtn-bg);
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.equalbtn:hover {
+  filter: brightness(1.1);
 }
 
 .operator {
-    color: #6dee0e;
+  color: var(--operator-color);
+  transition: color 0.3s ease;
 }
