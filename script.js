@@ -99,6 +99,10 @@ function handleInput(value) {
         string = "";
         input.value = string;
     }
+    else if(value === '%') {
+        string += '/100';
+        input.value = string;
+    }
     else if (value === 'DEL') {
         string = string.toString();
         string = string.substring(0, string.length - 1);
